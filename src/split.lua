@@ -8,6 +8,16 @@ local fmt = string.format
 local cut = string.sub
 local error = error
 
+-- A special case: take each character from the string, one by one.
+local function explode(str)
+  local t = {}
+  for i=1, #str do
+    t[#t + 1] = cut(str, i, i)
+  end
+
+  return t
+end
+
 -- The heart of the matter. The split function breaks up a string into
 -- a list. The function takes a string and a delimiter. The delimiter can
 -- be a string literal or a Lua pattern. Returns a list of found matches.
@@ -16,7 +26,8 @@ local function split(str, delimiter)
   -- If the pattern is nil, split on contiguous whitespace.
   -- Error out if the delimiter would lead to infinite loops.
   delimiter = delimiter or '%s+'
-  if delimiter == '' then delimiter = '.' end
+  -- This doesn't work yet. We would need to special case split every char.
+  if delimiter == '' then return explode(str) end
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
       delimiter)
