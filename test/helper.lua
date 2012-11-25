@@ -1,0 +1,14 @@
+package.path = '../src/?.lua;' .. package.path
+tap = require 'luatap'
+ok = tap.ok
+nok = tap.nok
+is = tap.is
+isnt = tap.isnt
+like = tap.like
+unlike = tap.unlike
+fail = tap.fail
+boom = tap.boom
+done = tap.done
+plan = tap.plan
+split = require 'split'
+join = table.concat
