@@ -1,5 +1,5 @@
 package = "LuaSplit"
-version = "0.0-1"
+version = "0.0-2"
 source = {
     url = "https://github.com/telemachus/lua-split"
 }
