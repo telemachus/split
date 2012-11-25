@@ -16,6 +16,7 @@ dependencies = {
 build = {
     type = "builtin",
     modules = {
-        split = "src/split.lua"
+        split = "src/split.lua",
+        spliterator = "src/spliterator.lua"
     }
 }
