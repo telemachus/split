@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>split.lua</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="locco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="docs">
+            <h1>
+              split.lua
+            </h1>
+          </th>
+          <th class="code">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+<tr id="section-1">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-1">&#182;</a>
+  </div>
+  
+<p>There are many split functions for Lua. This is mine. Though, actually,
+I took lots of ideas and probably some code from the implementations on
+<a href="http://lua-users.org/wiki/SplitJoin">the Lua-Users Wiki</a>.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>
+</pre></div>
+</td>
+</tr><tr id="section-2">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-2">&#182;</a>
+  </div>
+  
+<p>Faster lookup for built-in globals.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre><span class="k">local</span> find = string.find
+<span class="k">local</span> fmt = string.format
+<span class="k">local</span> cut = string.sub
+<span class="k">local</span> <span class="nt">error</span> = <span class="nt">error</span>
+</pre></div>
+</td>
+</tr><tr id="section-3">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-3">&#182;</a>
+  </div>
+  
+<p>The heart of the matter. The split function breaks up a string into
+a list. The function takes a string and a delimiter. The delimiter can
+be a string literal or a Lua pattern. Returns a list of found matches.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre><span class="k">local</span> <span class="k">function</span> <span class="nf">split</span>(str, delimiter)
+</pre></div>
+</td>
+</tr><tr id="section-4">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-4">&#182;</a>
+  </div>
+  
+<p>Handle special cases concerning the delimiter parameter.
+If the pattern is nil, split on contiguous whitespace.
+Error out if the delimiter would lead to infinite loops.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>  delimiter = delimiter <span class="o">or</span> <span class="s">'&#37;s+'</span>
+  <span class="k">if</span> delimiter == <span class="s">''</span> <span class="k">then</span> delimiter = <span class="s">'.'</span> <span class="k">end</span>
+  <span class="k">if</span> find(<span class="s">''</span>, delimiter, 1) <span class="k">then</span>
+    <span class="k">local</span> msg = fmt(<span class="s">'The delimiter (&#37;s) would match the empty string.'</span>,
+      delimiter)
+    <span class="nt">error</span>(msg)
+  <span class="k">end</span>
+</pre></div>
+</td>
+</tr><tr id="section-5">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-5">&#182;</a>
+  </div>
+  
+<p>The table <code>t</code> will store the found items. <code>s</code> and <code>e</code> will keep
+track of the start and end of a match for the delimiter. Finally,
+<code>position</code> tracks where to start grabbing the next match.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>  <span class="k">local</span> t = {}
+  <span class="k">local</span> s, e, last_e
+  <span class="k">local</span> position = 1
+  s, e = find(str, delimiter, position)
+  last_e = e
+</pre></div>
+</td>
+</tr><tr id="section-6">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-6">&#182;</a>
+  </div>
+  
+<p>Keep going forward as long as there is a found match.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>  <span class="k">while</span> s <span class="k">do</span>
+</pre></div>
+</td>
+</tr><tr id="section-7">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-7">&#182;</a>
+  </div>
+  
+<p>When we have a match, add the item from <code>position</code> to <code>s-1</code> to the
+list of items to be returned. This will produce empty elements if
+there are leading delimiters or runs of successive delimiters in
+the string.</p>
+
+<p>After the item is added, advance <code>position</code> to just past the end of
+the delimiter and look for the next match from there.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>    last_e = e
+    t[#t+1] = cut(str, position, s-1)
+    position = e + 1
+    s, e = find(str, delimiter, position)
+  <span class="k">end</span>
+</pre></div>
+</td>
+</tr><tr id="section-8">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-8">&#182;</a>
+  </div>
+  
+<p>To get the (potential) last item, check if the final position is
+still within the string. If it is, grab the rest of the string into
+a final element.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>  <span class="k">if</span> position <= #str <span class="k">then</span>
+    t[#t + 1] = cut(str, position)
+  <span class="k">end</span>
+</pre></div>
+</td>
+</tr><tr id="section-9">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-9">&#182;</a>
+  </div>
+  
+<p>Special handling for a (potential) final trailing delimiter. If the
+last found end position is identical to the end of the whole string,
+then add a trailing empty field.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>  <span class="k">if</span> last_e == #str <span class="k">then</span>
+    t[#t+1] = <span class="s">''</span>
+  <span class="k">end</span>
+
+  <span class="k">return</span> t
+<span class="k">end</span>
+</pre></div>
+</td>
+</tr><tr id="section-10">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-10">&#182;</a>
+  </div>
+  
+<p>Return the split function, so it can be required.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre><span class="k">return</span> split
+</pre></div>
+</td>
+</tr></tbody>
+    </table>
+  </div>
+</body>
+</html>
