@@ -34,5 +34,3 @@ got = split(s, '%s+')
 is(#got, 2, 'Split \'foo\tbar\' on space pattern [%s+] should have two items.')
 is(got[1], 'foo', 'First item should be \'foo\'.')
 is(got[2], 'bar', 'Second item should be \'bar\'.')
-
-done()
