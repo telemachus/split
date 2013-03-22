@@ -23,6 +23,3 @@ is(got[1], 'foo', 'First item should be \'foo\'.')
 is(got[2], 'bar', 'Second item should be \'bar\'.')
 is(got[3], 'bizz', 'Third item should be \'bizz\'.')
 is(got[4], 'bang', 'Fourth item should be \'bang\'.')
-
-done()
-

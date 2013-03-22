@@ -32,5 +32,3 @@ got = split(s, ',')
 is(#got, 2, 'Split \',\' should have two fields')
 is(got[1], '', 'First item should be empty field')
 is(got[2], '', 'Second item should be empty field')
-
-done()
