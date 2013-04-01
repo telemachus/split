@@ -7,6 +7,7 @@ local find = string.find
 local fmt = string.format
 local cut = string.sub
 local error = error
+local unpack = unpack
 
 -- A special case: take each character from the string, one by one.
 local function explode(str)
@@ -70,7 +71,7 @@ local function split(str, delimiter)
     t[#t+1] = ''
   end
 
-  return t
+  return unpack(t)
 end
 
 -- Return the split function, so it can be required.
