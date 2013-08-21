@@ -71,7 +71,7 @@ local function split(str, delimiter)
     t[#t+1] = ''
   end
 
-  return unpack(t)
+  return t
 end
 
 -- Return the split function, so it can be required.
