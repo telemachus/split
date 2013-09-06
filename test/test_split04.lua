@@ -1,7 +1,9 @@
 #!/usr/bin/env lua
-require 'helper'
+local t = require 'tap'
+package.path = '../src/?.lua;' .. package.path
+local split = require 'split'
 
-plan(9)
+t.plan(9)
 
 local s, got
 
@@ -9,17 +11,17 @@ local s, got
 -- at a time.
 s = 'foo'
 got = split(s, '')
-is(#got, 3, 'Split \'foo\' on commas should have three items.')
-is(got[1], 'f', 'First item should be \'f\'.')
-is(got[2], 'o', 'Second item should be \'o\'.')
-is(got[3], 'o', 'Third item should be \'o\'.')
+t.is(#got, 3, 'split(\'foo\', \'\') should have three items.')
+t.is(got[1], 'f', 'First item should be \'f\'.')
+t.is(got[2], 'o', 'Second item should be \'o\'.')
+t.is(got[3], 'o', 'Third item should be \'o\'.')
 
 -- Second special case: split on nil acts like you want to split on
 -- continuous runs of spaces or tabs.
 s = 'foo bar   bizz		bang'
 got = split(s, nil)
-is(#got, 4, 'Split \'foo bar    bizz		bang\' on nil should have four items.')
-is(got[1], 'foo', 'First item should be \'foo\'.')
-is(got[2], 'bar', 'Second item should be \'bar\'.')
-is(got[3], 'bizz', 'Third item should be \'bizz\'.')
-is(got[4], 'bang', 'Fourth item should be \'bang\'.')
+t.is(#got, 4, 'split(\'foo bar    bizz  	bang\') should have four items.')
+t.is(got[1], 'foo', 'First item should be \'foo\'.')
+t.is(got[2], 'bar', 'Second item should be \'bar\'.')
+t.is(got[3], 'bizz', 'Third item should be \'bizz\'.')
+t.is(got[4], 'bang', 'Fourth item should be \'bang\'.')

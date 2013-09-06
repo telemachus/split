@@ -1,9 +1,11 @@
 #!/usr/bin/env lua
-require 'helper'
+local t = require 'tap'
+package.path = '../src/?.lua;' .. package.path
+local split = require 'split'
 
-plan(1)
+t.plan(1)
 
 local s, got
 
 s = ',foo,bar'
-boom(split, {s, '%d*'}, 'Should blow up with deviant pattern.')
+t.boom(split, {s, '%d*'}, 'Should blow up with deviant pattern.')
