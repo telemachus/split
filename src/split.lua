@@ -39,7 +39,7 @@ local function split(str, delimiter)
   -- track of the start and end of a match for the delimiter. Finally,
   -- `position` tracks where to start grabbing the next match.
   local t = {}
-  local s, e, last_e
+  local s, e
   local position = 1
   s, e = find(str, delimiter, position)
 
