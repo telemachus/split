@@ -38,3 +38,9 @@ Examples:
     split('foo       bar	buzz') -- returns {'foo', 'bar', 'buzz'}
 
 [lua-wiki]: http://lua-users.org/wiki/SplitJoin
+
+The code has some literate-programming-style documentation. Open
+`docs/split.html` in a browser to read through the code and documentation
+for the implementation. That presentation is thanks to [locco][locco].
+
+[locco]: http://rgieseke.github.io/locco

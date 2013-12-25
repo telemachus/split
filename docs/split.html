@@ -54,12 +54,34 @@ I took lots of ideas and probably some code from the implementations on
 <span class="k">local</span> fmt = string.format
 <span class="k">local</span> cut = string.sub
 <span class="k">local</span> <span class="nt">error</span> = <span class="nt">error</span>
+<span class="k">local</span> <span class="nt">unpack</span> = <span class="nt">unpack</span>
 </pre></div>
 </td>
 </tr><tr id="section-3">
 <td class="docs">
   <div class="pilwrap">
     <a class="pilcrow" href="#section-3">&#182;</a>
+  </div>
+  
+<p>A special case: take each character from the string, one by one.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre><span class="k">local</span> <span class="k">function</span> <span class="nf">explode</span>(str)
+  <span class="k">local</span> t = {}
+  <span class="k">for</span> i=1, #str <span class="k">do</span>
+    t[#t + 1] = cut(str, i, i)
+  <span class="k">end</span>
+
+  <span class="k">return</span> t
+<span class="k">end</span>
+</pre></div>
+</td>
+</tr><tr id="section-4">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-4">&#182;</a>
   </div>
   
 <p>The heart of the matter. The split function breaks up a string into
@@ -72,10 +94,10 @@ be a string literal or a Lua pattern. Returns a list of found matches.</p>
   <div class="highlight"><pre><span class="k">local</span> <span class="k">function</span> <span class="nf">split</span>(str, delimiter)
 </pre></div>
 </td>
-</tr><tr id="section-4">
+</tr><tr id="section-5">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-4">&#182;</a>
+    <a class="pilcrow" href="#section-5">&#182;</a>
   </div>
   
 <p>Handle special cases concerning the delimiter parameter.
@@ -86,7 +108,20 @@ Error out if the delimiter would lead to infinite loops.</p>
 </td>
 <td class="code">
   <div class="highlight"><pre>  delimiter = delimiter <span class="o">or</span> <span class="s">'&#37;s+'</span>
-  <span class="k">if</span> delimiter == <span class="s">''</span> <span class="k">then</span> delimiter = <span class="s">'.'</span> <span class="k">end</span>
+</pre></div>
+</td>
+</tr><tr id="section-6">
+<td class="docs">
+  <div class="pilwrap">
+    <a class="pilcrow" href="#section-6">&#182;</a>
+  </div>
+  
+<p>This doesn't work yet. We would need to special case split every char.</p>
+
+
+</td>
+<td class="code">
+  <div class="highlight"><pre>  <span class="k">if</span> delimiter == <span class="s">''</span> <span class="k">then</span> <span class="k">return</span> explode(str) <span class="k">end</span>
   <span class="k">if</span> find(<span class="s">''</span>, delimiter, 1) <span class="k">then</span>
     <span class="k">local</span> msg = fmt(<span class="s">'The delimiter (&#37;s) would match the empty string.'</span>,
       delimiter)
@@ -94,10 +129,10 @@ Error out if the delimiter would lead to infinite loops.</p>
   <span class="k">end</span>
 </pre></div>
 </td>
-</tr><tr id="section-5">
+</tr><tr id="section-7">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-5">&#182;</a>
+    <a class="pilcrow" href="#section-7">&#182;</a>
   </div>
   
 <p>The table <code>t</code> will store the found items. <code>s</code> and <code>e</code> will keep
@@ -108,16 +143,15 @@ track of the start and end of a match for the delimiter. Finally,
 </td>
 <td class="code">
   <div class="highlight"><pre>  <span class="k">local</span> t = {}
-  <span class="k">local</span> s, e, last_e
+  <span class="k">local</span> s, e
   <span class="k">local</span> position = 1
   s, e = find(str, delimiter, position)
-  last_e = e
 </pre></div>
 </td>
-</tr><tr id="section-6">
+</tr><tr id="section-8">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-6">&#182;</a>
+    <a class="pilcrow" href="#section-8">&#182;</a>
   </div>
   
 <p>Keep going forward as long as there is a found match.</p>
@@ -128,10 +162,10 @@ track of the start and end of a match for the delimiter. Finally,
   <div class="highlight"><pre>  <span class="k">while</span> s <span class="k">do</span>
 </pre></div>
 </td>
-</tr><tr id="section-7">
+</tr><tr id="section-9">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-7">&#182;</a>
+    <a class="pilcrow" href="#section-9">&#182;</a>
   </div>
   
 <p>When we have a match, add the item from <code>position</code> to <code>s-1</code> to the
@@ -145,17 +179,16 @@ the delimiter and look for the next match from there.</p>
 
 </td>
 <td class="code">
-  <div class="highlight"><pre>    last_e = e
-    t[#t+1] = cut(str, position, s-1)
+  <div class="highlight"><pre>    t[#t+1] = cut(str, position, s-1)
     position = e + 1
     s, e = find(str, delimiter, position)
   <span class="k">end</span>
 </pre></div>
 </td>
-</tr><tr id="section-8">
+</tr><tr id="section-10">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-8">&#182;</a>
+    <a class="pilcrow" href="#section-10">&#182;</a>
   </div>
   
 <p>To get the (potential) last item, check if the final position is
@@ -165,15 +198,15 @@ a final element.</p>
 
 </td>
 <td class="code">
-  <div class="highlight"><pre>  <span class="k">if</span> position <= #str <span class="k">then</span>
+  <div class="highlight"><pre>  <span class="k">if</span> position < #str <span class="k">then</span>
     t[#t + 1] = cut(str, position)
   <span class="k">end</span>
 </pre></div>
 </td>
-</tr><tr id="section-9">
+</tr><tr id="section-11">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-9">&#182;</a>
+    <a class="pilcrow" href="#section-11">&#182;</a>
   </div>
   
 <p>Special handling for a (potential) final trailing delimiter. If the
@@ -183,7 +216,7 @@ then add a trailing empty field.</p>
 
 </td>
 <td class="code">
-  <div class="highlight"><pre>  <span class="k">if</span> last_e == #str <span class="k">then</span>
+  <div class="highlight"><pre>  <span class="k">if</span> position > #str <span class="k">then</span>
     t[#t+1] = <span class="s">''</span>
   <span class="k">end</span>
 
@@ -191,10 +224,10 @@ then add a trailing empty field.</p>
 <span class="k">end</span>
 </pre></div>
 </td>
-</tr><tr id="section-10">
+</tr><tr id="section-12">
 <td class="docs">
   <div class="pilwrap">
-    <a class="pilcrow" href="#section-10">&#182;</a>
+    <a class="pilcrow" href="#section-12">&#182;</a>
   </div>
   
 <p>Return the split function, so it can be required.</p>
