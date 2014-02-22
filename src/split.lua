@@ -60,7 +60,7 @@ local function split(str, delimiter)
   -- To get the (potential) last item, check if the final position is
   -- still within the string. If it is, grab the rest of the string into
   -- a final element.
-  if position < #str then
+  if position <= #str then
     t[#t + 1] = cut(str, position)
   end
 
