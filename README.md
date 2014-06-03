@@ -6,10 +6,6 @@ own][lua-wiki].
 
 [lua-wiki]: http://lua-users.org/wiki/SplitJoin
 
-In the spliterator branch, there's a version that operates as an iterator,
-rather than returning a list of results. This implementation has no tests.
-I'm still thinking it over.
-
 USAGE:
 
 The module returns a table containing the `split` function and four
