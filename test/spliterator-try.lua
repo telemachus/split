@@ -1,5 +1,6 @@
-require 'helper'
-spliter = require 'spliterator'
+#!/usr/bin/env lua
+package.path = '../src/?.lua;' .. package.path
+spliter = require 'spliterator'.spliterator
 
 -- str = 'foo,bar,bizz,buzz'
 
@@ -19,9 +20,9 @@ spliter = require 'spliterator'
 --   print('Piece ' .. p)
 -- end
 
-str = 'foo,bar,bizz,buzz'
-
+local str = 'foo,bar,bizz,buzz,'
+local count = 1
 for p in spliter(str, ',') do
-  print(p)
+  print(count .. '. [' .. p .. ']')
+  count = count + 1
 end
-

@@ -1,9 +1,7 @@
 #!/usr/bin/env lua
 local t = require 'tap'
 package.path = '../src/?.lua;' .. package.path
-local split = require 'split'
-
-t.plan(9)
+local split = require 'split'.split
 
 local s, got
 
@@ -25,3 +23,5 @@ t.is(got[1], 'foo', 'First item should be \'foo\'.')
 t.is(got[2], 'bar', 'Second item should be \'bar\'.')
 t.is(got[3], 'bizz', 'Third item should be \'bizz\'.')
 t.is(got[4], 'bang', 'Fourth item should be \'bang\'.')
+
+t.done()
