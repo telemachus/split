@@ -1,9 +1,7 @@
 #!/usr/bin/env lua
 local t = require 'tap'
 package.path = '../src/?.lua;' .. package.path
-local split = require 'split'
-
-t.plan(9)
+local split = require 'split'.split
 
 local s, got
 
@@ -25,3 +23,21 @@ t.is(got[1], 'foo', 'First item should be \'foo\'.')
 t.is(got[2], 'bar', 'Second item should be \'bar\'.')
 t.is(got[3], 'bizz', 'Third item should be \'bizz\'.')
 t.is(got[4], 'bang', 'Fourth item should be \'bang\'.')
+
+-- An edge case: final item is only one character.
+s = 'foo, ba, b'
+got = split(s, ', ')
+t.is(#got, 3, 'split(\'foo, ba, b\', \', \') should have three items.')
+t.is(got[1], 'foo', 'First item should be \'foo\'.')
+t.is(got[2], 'ba', 'Second item should be \'ba\'.')
+t.is(got[3], 'b', 'Third item should be \'b\'.')
+
+-- An edge case: first item is only one character.
+s = 'a,be,cee'
+got = split(s, ',')
+t.is(#got, 3, 'split(\'a,be,cee\', \',\') should have three items.')
+t.is(got[1], 'a', 'First item should be \'a\'.')
+t.is(got[2], 'be', 'Second item should be \'be\'.')
+t.is(got[3], 'cee', 'Third item should be \'cee\'.')
+
+t.done()

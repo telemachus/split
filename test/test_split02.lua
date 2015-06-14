@@ -1,10 +1,8 @@
 #!/usr/bin/env lua
 local t = require 'tap'
 package.path = '../src/?.lua;' .. package.path
-local split = require 'split'
+local split = require 'split'.split
 local join = table.concat
-
-t.plan(16)
 
 local s, got
 
@@ -35,3 +33,5 @@ got = split(s, ',')
 t.is(#got, 2, 'Split \',\' should have two fields')
 t.is(got[1], '', 'First item should be empty field')
 t.is(got[2], '', 'Second item should be empty field')
+
+t.done()

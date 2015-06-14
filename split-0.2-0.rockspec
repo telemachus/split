@@ -1,14 +1,14 @@
 package = 'split'
-version = '0.0-7'
+version = '0.2-0'
 source = {
-    url = 'https://github.com/telemachus/lua-split'
+    url = 'https://bitbucket.org/telemachus/lua-split'
 }
 description = {
     summary = 'A split function for Lua',
     detailed = [[
         Lua has no built-in split function. This package provides one.
     ]],
-    license = 'MIT'
+    license = 'BSD 3-Clause'
 }
 dependencies = {
     'lua >= 5.1'

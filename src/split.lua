@@ -1,3 +1,9 @@
+--- split: a split function for Lua
+--
+-- Peter Aronoff
+-- BSD 3-Clause License
+-- 2012-2015
+--
 -- There are many split functions for Lua. This is mine. Though, actually,
 -- I took lots of ideas and probably some code from the implementations on
 -- [the Lua-Users Wiki](http://lua-users.org/wiki/SplitJoin).
@@ -10,7 +16,7 @@ local error = error
 local unpack = unpack
 
 -- A special case: take each character from the string, one by one.
-local function explode(str)
+local explode = function (str)
   local t = {}
   for i=1, #str do
     t[#t + 1] = cut(str, i, i)
@@ -22,7 +28,7 @@ end
 -- The heart of the matter. The split function breaks up a string into
 -- a list. The function takes a string and a delimiter. The delimiter can
 -- be a string literal or a Lua pattern. Returns a list of found matches.
-local function split(str, delimiter)
+local split = function (str, delimiter)
   -- Handle special cases concerning the delimiter parameter.
   -- If the pattern is nil, split on contiguous whitespace.
   -- Error out if the delimiter would lead to infinite loops.
@@ -75,4 +81,9 @@ local function split(str, delimiter)
 end
 
 -- Return the split function, so it can be required.
-return split
+return {
+  split = split,
+  _VERSION = "0.2-0",
+  _AUTHOR = "Peter Aronoff",
+  _URL = "https://bitbucket.org/telemachus/lua-split"
+}
