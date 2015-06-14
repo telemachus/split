@@ -1,25 +1,22 @@
-# lua-split
+# lua-split: a string split function for Lua
 
-Lua doesn't provide a `split` function. Such a function is nearly mandatory
-for working with text, and as a result [a lot of people have made their
-own][lua-wiki].
+Lua doesn't provide a `split` function. Such a function is nearly mandatory for
+working with text, and as a result [a lot of people have made their own][wiki].
 
-This is mine. It has some tests, but use at your own risk.
-
-In the spliterator branch, there's a version that operates as an iterator,
-rather than returning a list of results. This implementation has no tests.
-I'm still thinking it over.
+[wiki]: http://lua-users.org/wiki/SplitJoin
 
 USAGE:
 
-The module only returns a single function (rather than a table). So you can
-import it straightforwardly:
+The module returns a table containing the `split` function and four
+informational fields: `_VERSION`, `_AUTHOR`, `_URL` and `_LICENSE`.
 
-    local split = require 'split'
+To use the function itself, simply require it. For example:
+
+    local split = require 'split'.split
 
 The function `split` takes two parameters: first, the string to split, and
-second, a literal or pattern delimiter to use to divide the given string.
-The function returns a table containing the substrings.
+second, a literal or pattern delimiter to use to divide the given string. The
+function returns a table containing the substrings.
 
 Examples:
 
@@ -37,10 +34,14 @@ Examples:
     -- The split below is equivalent to split('foo       bar	buzz', '%s+').
     split('foo       bar	buzz') -- returns {'foo', 'bar', 'buzz'}
 
-[lua-wiki]: http://lua-users.org/wiki/SplitJoin
+There is also an iterator version. Since I'm still working on this
+alternative, it's provided by a separate require:
 
-The code has some literate-programming-style documentation. Open
-`docs/split.html` in a browser to read through the code and documentation
-for the implementation. That presentation is thanks to [locco][locco].
+    local spliter = require 'spliterator'.spliterator
 
-[locco]: http://rgieseke.github.io/locco
+    local str = 'foo,bar,bizz,buzz,'
+    local count = 1
+    for p in spliter(str, ',') do
+      print(count .. '. [' .. p .. ']')
+      count = count + 1
+    end

@@ -1,11 +1,9 @@
--- Faster lookup for built-in globals.
 local find = string.find
 local fmt = string.format
 local cut = string.sub
 local error = error
 
--- The heart of the matter.
-local function spliter(str, delimiter)
+local spliterator = function (str, delimiter)
   -- Handle special cases concerning the delimiter parameter.
   -- If the pattern is nil, split on contiguous whitespace.
   -- Error out if the delimiter would lead to infinite loops.
@@ -38,5 +36,10 @@ local function spliter(str, delimiter)
   return iter
 end
 
--- Return the split function, so it can be required.
-return spliter
+return {
+  spliterator = spliterator,
+  _VERSION = '0.2-0',
+  _AUTHOR = 'Peter Aronoff',
+  _URL = 'https://bitbucket.org/telemachus/lua-split',
+  _LICENSE = 'BSD 3-Clause',
+}

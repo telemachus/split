@@ -6,9 +6,7 @@
 --
 -- There are many split functions for Lua. This is mine. Though, actually,
 -- I took lots of ideas and probably some code from the implementations on
--- [the Lua-Users Wiki](http://lua-users.org/wiki/SplitJoin).
-
--- Faster lookup for built-in globals.
+-- the Lua-Users Wiki, http://lua-users.org/wiki/SplitJoin.
 local find = string.find
 local fmt = string.format
 local cut = string.sub
@@ -30,11 +28,12 @@ end
 -- be a string literal or a Lua pattern. Returns a list of found matches.
 local split = function (str, delimiter)
   -- Handle special cases concerning the delimiter parameter.
-  -- If the pattern is nil, split on contiguous whitespace.
-  -- Error out if the delimiter would lead to infinite loops.
+  -- 1. If the pattern is nil, split on contiguous whitespace.
+  -- 2. Error out if the delimiter would lead to infinite loops.
   delimiter = delimiter or '%s+'
-  -- This doesn't work yet. We would need to special case split every char.
   if delimiter == '' then return explode(str) end
+  -- Protect against patterns that match too much. Such patterns would hang
+  -- the program.
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
       delimiter)
@@ -49,15 +48,7 @@ local split = function (str, delimiter)
   local position = 1
   s, e = find(str, delimiter, position)
 
-  -- Keep going forward as long as there is a found match.
   while s do
-    -- When we have a match, add the item from `position` to `s-1` to the
-    -- list of items to be returned. This will produce empty elements if
-    -- there are leading delimiters or runs of successive delimiters in
-    -- the string.
-    --
-    -- After the item is added, advance `position` to just past the end of
-    -- the delimiter and look for the next match from there.
     t[#t+1] = cut(str, position, s-1)
     position = e + 1
     s, e = find(str, delimiter, position)
@@ -85,5 +76,6 @@ return {
   split = split,
   _VERSION = "0.2-0",
   _AUTHOR = "Peter Aronoff",
-  _URL = "https://bitbucket.org/telemachus/lua-split"
+  _URL = "https://bitbucket.org/telemachus/lua-split",
+  _LICENSE = 'BSD 3-Clause',
 }
