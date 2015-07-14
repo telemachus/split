@@ -34,8 +34,7 @@ Examples:
     -- The split below is equivalent to split('foo       bar	buzz', '%s+').
     split('foo       bar	buzz') -- returns {'foo', 'bar', 'buzz'}
 
-There is also an iterator version. Since I'm still working on this
-alternative, it's provided by a separate require:
+There is also an iterator version, which is provided by a separate require.
 
     local spliter = require 'spliterator'.spliterator
 

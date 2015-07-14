@@ -1,4 +1,4 @@
---- split: a split function for Lua
+--- string-split: a split function for Lua
 --
 -- Peter Aronoff
 -- BSD 3-Clause License
@@ -11,9 +11,12 @@ local find = string.find
 local fmt = string.format
 local cut = string.sub
 local error = error
-local unpack = unpack
+# Lua 5.3 has moved unpack to table.unpack
+local unpack = unpack or table.unpack
 
--- A special case: take each character from the string, one by one.
+--- Helper functions
+--
+-- Return a table composed of the individual characters from a string.
 local explode = function (str)
   local t = {}
   for i=1, #str do
@@ -23,17 +26,16 @@ local explode = function (str)
   return t
 end
 
--- The heart of the matter. The split function breaks up a string into
--- a list. The function takes a string and a delimiter. The delimiter can
--- be a string literal or a Lua pattern. Returns a list of found matches.
+--- split(string, delimiter) => { results }
+-- Return a table composed of substrings divided by a delimiter or pattern.
 local split = function (str, delimiter)
   -- Handle special cases concerning the delimiter parameter.
   -- 1. If the pattern is nil, split on contiguous whitespace.
-  -- 2. Error out if the delimiter would lead to infinite loops.
+  -- 2. If the pattern is an empty string, explode the string.
+  -- 3. Protect against patterns that match too much. Such patterns would hang
+  --    the caller.
   delimiter = delimiter or '%s+'
   if delimiter == '' then return explode(str) end
-  -- Protect against patterns that match too much. Such patterns would hang
-  -- the program.
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
       delimiter)
@@ -71,11 +73,42 @@ local split = function (str, delimiter)
   return t
 end
 
--- Return the split function, so it can be required.
+--- spliterator(str, delimiter)
+local spliterator = function (str, delimiter)
+  local delimiter = delimiter or '%s+'
+  if delimiter == '' then delimiter = '.' end
+  if find('', delimiter, 1) then
+    local msg = fmt('The delimiter (%s) would match the empty string.',
+      delimiter)
+    error(msg)
+  end
+
+  local s, e, subsection
+  local position = 1
+  local function iter()
+    s, e = find(str, delimiter, position)
+    if s then
+      subsection = cut(str, position, s-1)
+      position = e + 1
+      return subsection
+    elseif position <= #str then
+      subsection = cut(str, position)
+      position = #str + 2
+      return subsection
+    elseif position == #str + 1 then
+      position = #str + 2
+      return ''
+    end
+  end
+
+  return iter
+end
+
 return {
   split = split,
-  _VERSION = "0.2-0",
+  spliterator = spliterator,
+  _VERSION = "1.0-0",
   _AUTHOR = "Peter Aronoff",
-  _URL = "https://bitbucket.org/telemachus/lua-split",
+  _URL = "https://bitbucket.org/telemachus/string-split",
   _LICENSE = 'BSD 3-Clause',
 }

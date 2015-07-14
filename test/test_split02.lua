@@ -1,5 +1,5 @@
 #!/usr/bin/env lua
-local t = require 'tap'
+local t = require 'tapered'
 package.path = '../src/?.lua;' .. package.path
 local split = require 'split'.split
 local join = table.concat
