@@ -6,19 +6,16 @@ local join = table.concat
 
 local s, got
 
-setup = function () 
-  print("First setup")
-end
+s = 'foobar'
+got = split(s, ',')
+t.is(#got, 1, 'Split \'foobar\' on commas should have one item.')
+t.is(got[1], 'foobar', 'First item should be \'foo\'.')
 
 s = 'foo,bar'
 got = split(s, ',')
 t.is(#got, 2, 'Split \'foo,bar\' on commas should have two items.')
 t.is(got[1], 'foo', 'First item should be \'foo\'.')
 t.is(got[2], 'bar', 'Second item should be \'bar\'.')
-
-setup = function ()
-  print("Second setup")
-end
 
 s = '1 2'
 got = split(s, ' ')

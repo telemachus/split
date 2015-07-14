@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Peter Aronoff">
+<title>string-split documentation</title>
+<link rel="stylesheet" href="normalize.css" media="screen,projection">
+<link rel="stylesheet" href="screen.css" media="screen,projection">
+</head>
+<body>
+<h1>string-split</h1>
+
+<h2>Synopsis</h2>
+
+<p>Lua doesn&rsquo;t provide a <code>split</code> function, though such a function is nearly
+mandatory for working with text. As a result <a href="http://lua-users.org/wiki/SplitJoin">a lot of people have made their
+own</a>.  This library provides two split functions: a standard one and an
+iterator version.</p>
+
+<h2>Usage</h2>
+
+<ul>
+<li><p><code>split(string, delimiter) =&gt; { results }</code></p>
+
+<p>The delimiter can be a literal string or a Lua pattern. The function returns a
+table of items found by splitting the string up into pieces divided by the
+delimiter.</p>
+
+<p>Extra delimiters anywhere in the string will result in empty strings being
+returned as part of the results table.</p>
+
+<p>The function also provides two shortcuts for common situations. If the
+delimiter parameter is an empty string, the function returns a table
+containing every character in the original string as a separate item. If the
+delimiter parameter is <code>nil</code>, the function considers this equivalent to the
+Lua pattern <code>'%s+'</code> and splits the string on whitespace.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><p>Split on a literal character</p>
+
+<pre><code>  split('foo,bar,buzz', ',') -- returns {'foo', 'bar', 'buzz'}
+  split(',foo,bar,,buzz,', ',') -- returns {'', 'foo', 'bar', '', 'buzz', ''}
+</code></pre></li>
+<li><p>Split on a Lua pattern</p>
+
+<pre><code>  split('foo       bar        buzz', '%s+') -- returns {'foo', 'bar', 'buzz'}
+</code></pre></li>
+<li><p>A special case: an empty string delimiter</p>
+
+<p>  A pattern of the empty string is special. It tells the function
+  to return each character from the original string as an individual
+  item. Think of this as &ldquo;explode the string&rdquo;.</p>
+
+<pre><code>  split('foo', '') -- returns {'f', 'o', 'o'}
+</code></pre></li>
+<li><p>Another special case: nil delimiter</p>
+
+<p>  Passing nothing or an explicit <code>nil</code> as the delimiter is a second
+  special case. <code>split</code> treats this as equivalent to a pattern of <code>'$s+'</code>
+  and splits on consecutive runs of whitespace.</p>
+
+<pre><code>  split('foo       bar    buzz') -- returns {'foo', 'bar', 'buzz'}
+</code></pre></li>
+</ul>
+</li>
+<li><p><code>spliterator(string, delimiter) =&gt; custom iterator</code></p>
+
+<p>This is an iterator version of the same idea. Everything from above applies,
+except that the function returns a custom iterator to work through results
+rather than a table.</p>
+
+<pre><code>      local spliter = require 'split'.spliterator
+
+      local str = 'foo,bar,bizz,buzz,'
+      local count = 1
+      for p in spliter(str, ',') do
+        print(count .. '. [' .. p .. ']')
+        count = count + 1
+      end
+</code></pre></li>
+</ul>
+
+</body>
+</html>

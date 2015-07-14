@@ -1,0 +1,109 @@
+body {
+  margin: 10px auto;
+  width: 820px;
+  font-size: 18px;
+  font-family: "DejaVuSerifBook", "Palatino", "Palatino Linotype", serif;
+  color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "DejaVuSansBook", "Lucida Grande", "Helvetica Neue", sans-serif;
+  font-weight: bold;
+  line-height: 1.6;
+  margin-bottom: 5px;
+  color: #111;
+}
+
+h1 {
+  margin-top: 10px;
+}
+
+h2, h3, h4, h5, h6 { margin-top: 20px; }
+
+h1 { font-size: 28px; }
+
+h2 { font-size: 24px; border-bottom: solid 4px; }
+h3 { font-size: 20px; }
+
+p {
+  line-height: 1.3;
+  margin: 12px auto;
+
+}
+
+code {
+  font-family: "DejaVuSansMono", Inconsolata, Consolas, Menlo, monospace;
+}
+
+blockquote {
+  margin: 10px 30px 10px 20px;
+}
+
+blockquote p {
+  line-height: 1.2;
+}
+
+ul, ol, ul p, ol p {
+  margin-left: 0;
+  line-height: 1.3;
+}
+
+ul ul, ol ol {
+  font-size: 100%;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ul ul {
+  list-style-type: circle;
+}
+
+ul ul ul {
+  list-style-type: square;
+}
+
+ul ul ul ul {
+  list-style-type: disc;
+}
+
+h2 + p {
+  margin-top: 15px;
+}
+
+a:link, a:visited {
+  text-decoration: underline;
+  color: #336891;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+  color: #336891;
+}
+
+pre {
+  margin: 30px 15px;
+  padding: 10px 5px 10px 15px;
+  border: solid black 5px;
+  border-left: solid black 30px;
+  font-size: 14px;
+  line-height: 1.3;
+  background: #FFF;
+  color: #000;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+ins {
+  text-decoration: none;
+}
+
+ins:before {
+  content: "〈";
+}
+
+ins:after {
+  content: "〉";
+}

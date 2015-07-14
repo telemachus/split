@@ -13,6 +13,6 @@ build = {
     type = 'builtin',
     modules = {
         split = 'src/split.lua',
-    }
+    },
     copy_directories = { 'doc' }
 }

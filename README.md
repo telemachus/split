@@ -1,47 +1,76 @@
-# string-split: string split functions for Lua
+# string-split
 
-Lua doesn't provide a `split` function. Such a function is nearly mandatory for
-working with text, and as a result [a lot of people have made their own][wiki].
+## Synopsis
+
+Lua doesn't provide a `split` function, though such a function is nearly
+mandatory for working with text. As a result [a lot of people have made their
+own][wiki].  This library provides two split functions: a standard one and an
+iterator version.
 
 [wiki]: http://lua-users.org/wiki/SplitJoin
 
-USAGE:
+## Usage
 
-The module returns a table containing two `split` functions and four
-informational fields: `_VERSION`, `_AUTHOR`, `_URL` and `_LICENSE`.
++ `split(string, delimiter) => { results }`	
 
-The basic split function is what you would expect and relatively straightforward
-to use:
+  The delimiter can be a literal string or a Lua pattern. The function returns
+  a table of items found by splitting the string up into pieces divided by the
+  delimiter.
 
-    local split = require 'split'.split
+  Extra delimiters anywhere in the string will result in empty strings being
+  returned as part of the results table.
 
-The function takes two parameters: first, the string to split, and second, a
-literal or pattern delimiter to use to divide the given string. The function
-returns a table containing the substrings.
+  The function also provides two shortcuts for common situations. If the
+  delimiter parameter is an empty string, the function returns a table
+  containing every character in the original string as a separate item. If the
+  delimiter parameter is `nil`, the function considers this equivalent to the
+  Lua pattern `'%s+'` and splits the string on whitespace.
 
-Examples:
+  Examples:
 
-    -- Split on a literal character
-    split('foo,bar,buzz', ',') -- returns {'foo', 'bar', 'buzz'}
+    * Split on a literal character
 
-    -- Split on a Lua pattern
-    split('foo       bar		buzz', '%s+') -- returns {'foo', 'bar', 'buzz'}
+            split('foo,bar,buzz', ',') -- returns {'foo', 'bar', 'buzz'}
+            split(',foo,bar,,buzz,', ',') -- returns {'', 'foo', 'bar', '', 'buzz', ''}
 
-    -- A special case: split on the empty string returns each character.
-    -- That is, it explodes the string.
-    split('foo', '') -- returns {'f', 'o', 'o'}
+    * Split on a Lua pattern
 
-    -- Another special case: split on nil acts like splitting on '%s+'.
-    -- The split below is equivalent to split('foo       bar	buzz', '%s+').
-    split('foo       bar	buzz') -- returns {'foo', 'bar', 'buzz'}
+            split('foo       bar		buzz', '%s+') -- returns {'foo', 'bar', 'buzz'}
 
-There is also an iterator version of the same split idea.
+    * A special case: an empty string delimiter
 
-    local spliter = require 'split'.spliterator
+        A pattern of the empty string is special. It tells the function to
+        return each character from the original string as an individual item.
+        Think of this as "explode the string".
 
-    local str = 'foo,bar,bizz,buzz,'
-    local count = 1
-    for p in spliter(str, ',') do
-      print(count .. '. [' .. p .. ']')
-      count = count + 1
-    end
+            split('foo', '') -- returns {'f', 'o', 'o'}
+
+    * Another special case: nil delimiter
+
+        Passing nothing or an explicit `nil` as the delimiter is a second
+        special case. `split` treats this as equivalent to a pattern of `'$s+'`
+        and splits on consecutive runs of whitespace.
+
+            split('foo       bar	buzz') -- returns {'foo', 'bar', 'buzz'}
+
++ `spliterator(string, delimiter) => custom iterator`
+
+  This is an iterator version of the same idea. Everything from above applies,
+  except that the function returns a custom iterator to work through results
+  rather than a table.
+
+            local spliter = require 'split'.spliterator
+
+            local str = 'foo,bar,bizz,buzz,'
+            local count = 1
+            for p in spliter(str, ',') do
+              print(count .. '. [' .. p .. ']')
+              count = count + 1
+            end
+
+---
+
+(c) 2012-2015 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][li] for
+details.
+
+[li]: /LICENSE.md
