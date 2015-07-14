@@ -17,8 +17,7 @@ mkdir -p doc
 	printf "media=\"screen,projection\">\n"
 	printf "</head>\n"
 	printf "<body>\n"
-	#markdown README.md | sed 's/\/CHANGES.md/changes.html/' | sed 's/\/LICENSE.md/license.html/'
-	markdown README.md | sed -e 's/\/CHANGES.md/changes.html/' -e 's/\/LICENSE.md/license.html/'
+	markdown README.md | sed -e 's/\/CHANGES.md/changes.html/' -e 's/\/LICENSE.md/license.html/' -e 's/LICENSE.md/the license/'
 	printf "</body>\n"
 	printf "</html>\n"
 } > doc/index.html
@@ -36,7 +35,7 @@ mkdir -p doc
 	printf "media=\"screen,projection\">\n"
 	printf "</head>\n"
 	printf "<body>\n"
-	markdown CHANGES.md | sed -e 's/\/README.md/index.html/' -e 's/\/LICENSE.md/license.html/'
+	markdown CHANGES.md | sed -e 's/\/CHANGES.md/changes.html/' -e 's/\/LICENSE.md/license.html/' -e 's/LICENSE.md/the license/'
 	printf "</body>\n"
 	printf "</html>\n"
 } > doc/changes.html

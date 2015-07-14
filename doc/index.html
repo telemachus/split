@@ -22,8 +22,8 @@ iterator version.</p>
 <ul>
 <li><p><code>split(string, delimiter) =&gt; { results }</code></p>
 
-<p>The delimiter can be a literal string or a Lua pattern. The function returns a
-table of items found by splitting the string up into pieces divided by the
+<p>The delimiter can be a literal string or a Lua pattern. The function returns
+a table of items found by splitting the string up into pieces divided by the
 delimiter.</p>
 
 <p>Extra delimiters anywhere in the string will result in empty strings being
@@ -40,18 +40,19 @@ Lua pattern <code>'%s+'</code> and splits the string on whitespace.</p>
 <ul>
 <li><p>Split on a literal character</p>
 
-<pre><code>  split('foo,bar,buzz', ',') -- returns {'foo', 'bar', 'buzz'}
+<pre><code>  local split = require 'split'.split
+  split('foo,bar,buzz', ',') -- returns {'foo', 'bar', 'buzz'}
   split(',foo,bar,,buzz,', ',') -- returns {'', 'foo', 'bar', '', 'buzz', ''}
 </code></pre></li>
 <li><p>Split on a Lua pattern</p>
 
 <pre><code>  split('foo       bar        buzz', '%s+') -- returns {'foo', 'bar', 'buzz'}
 </code></pre></li>
-<li><p>A special case: an empty string delimiter</p>
+<li><p>A special case: empty string delimiter</p>
 
-<p>  A pattern of the empty string is special. It tells the function
-  to return each character from the original string as an individual
-  item. Think of this as &ldquo;explode the string&rdquo;.</p>
+<p>  A pattern of the empty string is special. It tells the function to
+  return each character from the original string as an individual item.
+  Think of this as &ldquo;explode the string&rdquo;.</p>
 
 <pre><code>  split('foo', '') -- returns {'f', 'o', 'o'}
 </code></pre></li>
@@ -82,5 +83,30 @@ rather than a table.</p>
 </code></pre></li>
 </ul>
 
+
+<h2>Varia</h2>
+
+<p>The module provides four informational fields that return strings. They should
+be self-explanatory and are probably of little use to most people.</p>
+
+<ul>
+<li><p><code>_AUTHOR</code></p></li>
+<li><p><code>_VERSION</code></p></li>
+<li><p><code>_LICENSE</code></p></li>
+<li><p><code>_URL</code></p></li>
+</ul>
+
+
+<h2>Credits</h2>
+
+<p>Many of my ideas came from reading <a href="http://lua-users.org/wiki/SplitJoin">the LuaWiki page on split</a>. I thank
+all those contributors for their suggestions and examples.</p>
+
+<p>All mistakes are mine. See <a href="changes.html">version history</a> for release details.</p>
+
+<hr />
+
+<p>&copy; 2012-2015 Peter Aronoff. BSD 3-Clause license; see <a href="license.html">the license</a> for
+details.</p>
 </body>
 </html>

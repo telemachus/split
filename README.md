@@ -30,6 +30,7 @@ iterator version.
 
     * Split on a literal character
 
+            local split = require 'split'.split
             split('foo,bar,buzz', ',') -- returns {'foo', 'bar', 'buzz'}
             split(',foo,bar,,buzz,', ',') -- returns {'', 'foo', 'bar', '', 'buzz', ''}
 
@@ -37,7 +38,7 @@ iterator version.
 
             split('foo       bar		buzz', '%s+') -- returns {'foo', 'bar', 'buzz'}
 
-    * A special case: an empty string delimiter
+    * A special case: empty string delimiter
 
         A pattern of the empty string is special. It tells the function to
         return each character from the original string as an individual item.
@@ -67,6 +68,28 @@ iterator version.
               print(count .. '. [' .. p .. ']')
               count = count + 1
             end
+
+## Varia
+
+The module provides four informational fields that return strings. They should
+be self-explanatory and are probably of little use to most people.
+
++ `_AUTHOR`
+
++ `_VERSION`
+
++ `_LICENSE`
+
++ `_URL`
+
+## Credits
+
+Many of my ideas came from reading [the LuaWiki page on split][wiki]. I thank
+all those contributors for their suggestions and examples.
+
+All mistakes are mine. See [version history][c] for release details.
+
+[c]: /CHANGES.md
 
 ---
 
