@@ -1,6 +1,6 @@
 #!/usr/bin/env lua
 package.path = '../src/?.lua;' .. package.path
-local spliter = require 'spliterator'.spliterator
+local spliter = require 'split'.spliterator
 local t = require 'tapered'
 
 
