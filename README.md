@@ -1,4 +1,4 @@
-# lua-split: a string split function for Lua
+# string-split: string split functions for Lua
 
 Lua doesn't provide a `split` function. Such a function is nearly mandatory for
 working with text, and as a result [a lot of people have made their own][wiki].
@@ -7,16 +7,17 @@ working with text, and as a result [a lot of people have made their own][wiki].
 
 USAGE:
 
-The module returns a table containing the `split` function and four
+The module returns a table containing two `split` functions and four
 informational fields: `_VERSION`, `_AUTHOR`, `_URL` and `_LICENSE`.
 
-To use the function itself, simply require it. For example:
+The basic split function is what you would expect and relatively straightforward
+to use:
 
     local split = require 'split'.split
 
-The function `split` takes two parameters: first, the string to split, and
-second, a literal or pattern delimiter to use to divide the given string. The
-function returns a table containing the substrings.
+The function takes two parameters: first, the string to split, and second, a
+literal or pattern delimiter to use to divide the given string. The function
+returns a table containing the substrings.
 
 Examples:
 
