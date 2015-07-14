@@ -11,7 +11,7 @@ local find = string.find
 local fmt = string.format
 local cut = string.sub
 local error = error
-# Lua 5.3 has moved unpack to table.unpack
+-- Lua 5.3 has moved unpack to table.unpack
 local unpack = unpack or table.unpack
 
 --- Helper functions
