@@ -5,6 +5,7 @@ do
 	rm -rf $HOME/.lua ;
 	LUA="$lua" source "$CI/setenv_lua.sh" ;
 	lua -v ;
+    luarocks install tapered
     for n in {1..5}
     do
         lua test_split0${n}.lua 
