@@ -42,7 +42,7 @@ local split = function (str, delimiter)
   if delimiter == '' then return explode(str) end
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
-      delimiter)
+                    delimiter)
     error(msg)
   end
 
@@ -83,7 +83,7 @@ local spliterator = function (str, delimiter)
   if delimiter == '' then delimiter = '.' end
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
-      delimiter)
+                    delimiter)
     error(msg)
   end
 
