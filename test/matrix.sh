@@ -6,9 +6,9 @@ do
 	LUA="$lua" source "$CI/setenv_lua.sh" ;
 	lua -v ;
     luarocks install tapered
-    for n in {1..5}
+    for test in test-*.lua
     do
-        lua test_split0${n}.lua 
+        lua "$test"
         [ $? -eq 0 ] || exit $?
     done
 done
