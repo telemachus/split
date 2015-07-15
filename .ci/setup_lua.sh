@@ -73,6 +73,8 @@ else
     cd lua-5.3.1;
   fi
 
+  # Build Lua without backwards compatability for testing
+  perl -i.back -pe 's/-DLUA_COMPAT_(ALL|5_2)//' src/Makefile
   make $PLATFORM
   make INSTALL_TOP="$LUA_HOME_DIR" install;
 
