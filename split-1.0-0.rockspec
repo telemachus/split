@@ -1,6 +1,6 @@
 package = 'split'
 version = '1.0-0'
-source = { url = 'https://bitbucket.org/telemachus/string-split' }
+source = { url = 'https://bitbucket.org/telemachus/split' }
 description = {
     summary = 'A split function for Lua',
     detailed = [[

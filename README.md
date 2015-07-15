@@ -1,4 +1,4 @@
-# string-split [![Build Status](https://drone.io/bitbucket.org/telemachus/string-split/status.png)](https://drone.io/bitbucket.org/telemachus/string-split/latest)
+# string-split [![Build Status](https://drone.io/bitbucket.org/telemachus/split/status.png)](https://drone.io/bitbucket.org/telemachus/split/latest)
 
 ## Synopsis
 
