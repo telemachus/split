@@ -29,6 +29,10 @@ end
 --- split(string, delimiter) => { results }
 -- Return a table composed of substrings divided by a delimiter or pattern.
 local split = function (str, delimiter)
+  -- Handle an edge case concerning the str parameter. Immediately return an
+  -- empty table if str == ''.
+  if str == '' then return {} end
+
   -- Handle special cases concerning the delimiter parameter.
   -- 1. If the pattern is nil, split on contiguous whitespace.
   -- 2. If the pattern is an empty string, explode the string.

@@ -6,6 +6,14 @@ local join = table.concat
 
 local s, got
 
+s = ''
+got = split(s, ',')
+t.same(got, {}, 'Empty string param should return empty table')
+print("Here's what I got '" .. type(got) .. "'.")
+for k, v in pairs(got) do
+  print("k -> " .. k .. "\tv -> " .. v)
+end
+
 s = 'foobar'
 got = split(s, ',')
 t.is(#got, 1, 'Split \'foobar\' on commas should have one item.')
