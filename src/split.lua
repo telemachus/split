@@ -90,6 +90,8 @@ local spliterator = function (str, delimiter)
   local s, e, subsection
   local position = 1
   local function iter()
+    if str == '' then return nil end
+
     s, e = find(str, delimiter, position)
     if s then
       subsection = cut(str, position, s-1)
