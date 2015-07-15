@@ -5,10 +5,10 @@ do
 	rm -rf $HOME/.lua ;
 	LUA="$lua" source "$CI/setenv_lua.sh" ;
 	lua -v ;
-    luarocks install tapered
-    for test in test-*.lua
-    do
-        lua "$test"
-        [ $? -eq 0 ] || exit $?
-    done
+	luarocks install tapered
+	for test in test-*.lua
+	do
+		lua "$test"
+		[ $? -eq 0 ] || exit $?
+	done
 done
