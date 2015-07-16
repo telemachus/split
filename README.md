@@ -1,11 +1,10 @@
-# string-split [![Build Status](https://drone.io/bitbucket.org/telemachus/split/status.png)](https://drone.io/bitbucket.org/telemachus/split/latest)
+# split [![Build Status](https://drone.io/bitbucket.org/telemachus/split/status.png)](https://drone.io/bitbucket.org/telemachus/split/latest)
 
 ## Synopsis
 
-Lua doesn't provide a `split` function, though such a function is nearly
-mandatory for working with text. As a result [a lot of people have made their
-own][wiki].  This library provides two split functions: a standard one and an
-iterator version.
+A string `split` function and iterator for Lua, which doesn't provide such
+a function in its standard string library. Such a function is clearly useful,
+and [many people have written their own][wiki].
 
 [wiki]: http://lua-users.org/wiki/SplitJoin
 

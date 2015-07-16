@@ -1,4 +1,4 @@
---- string-split: a split function for Lua
+--- split: string split function and iterator for Lua
 --
 -- Peter Aronoff
 -- BSD 3-Clause License
@@ -113,8 +113,8 @@ end
 return {
   split = split,
   spliterator = spliterator,
-  _VERSION = "1.0-0",
+  _VERSION = "1.0-0-1",
   _AUTHOR = "Peter Aronoff",
-  _URL = "https://bitbucket.org/telemachus/string-split",
+  _URL = "https://bitbucket.org/telemachus/split",
   _LICENSE = 'BSD 3-Clause',
 }

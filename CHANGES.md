@@ -1,6 +1,6 @@
-# string-split version history
+# split version history
 
-## *1.0-0* (July ?, 2015)
+## *1.0-0* (July 16, 2015)
 
 + Initial public release
 
