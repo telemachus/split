@@ -35,7 +35,7 @@ mkdir -p doc
 	printf "media=\"screen,projection\">\n"
 	printf "</head>\n"
 	printf "<body>\n"
-	markdown CHANGES.md | sed -e 's/\/CHANGES.md/changes.html/' -e 's/\/LICENSE.md/license.html/' -e 's/LICENSE.md/the license/'
+	markdown CHANGES.md | sed -e 's/\/README.md/index.html/' -e 's/\/LICENSE.md/license.html/' -e 's/LICENSE.md/the license/'
 	printf "</body>\n"
 	printf "</html>\n"
 } > doc/changes.html

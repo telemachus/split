@@ -6,9 +6,13 @@ do
 	LUA="$lua" source "$CI/setenv_lua.sh" ;
 	lua -v ;
 	luarocks install tapered
+	luarocks install luacov
+	luarocks install luacov-coveralls
 	for test in test-*.lua
 	do
-		lua "$test"
+		lua -lluacov "$test"
 		[ $? -eq 0 ] || exit $?
+		luacov-coveralls -t "$COVERALLS_REPO_TOKEN"
 	done
 done
+

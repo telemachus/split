@@ -36,4 +36,11 @@ end
 t.is(#actual, 1, "spliter('foobar', '|') should yield one item")
 t.same(actual, expected, "spliter('foobar', '|') should return 'foobar'")
 
+local explode = function (pat)
+  for _ in spliter('foo', pat) do
+  end
+end
+
+t.boom(explode,{'%d*'}, 'Deviant pattern should throw error in spliterator')
+
 t.done()

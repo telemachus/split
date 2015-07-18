@@ -2,7 +2,6 @@
 local t = require 'tapered'
 package.path = '../src/?.lua;' .. package.path
 local split = require 'split'.split
-local join = table.concat
 
 local s, got
 

@@ -11,8 +11,6 @@ local find = string.find
 local fmt = string.format
 local cut = string.sub
 local error = error
--- Lua 5.3 has moved unpack to table.unpack
-local unpack = unpack or table.unpack
 
 --- Helper functions
 --
@@ -79,7 +77,7 @@ end
 
 --- spliterator(str, delimiter)
 local spliterator = function (str, delimiter)
-  local delimiter = delimiter or '%s+'
+  delimiter = delimiter or '%s+'
   if delimiter == '' then delimiter = '.' end
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
