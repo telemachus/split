@@ -1,3 +1,4 @@
 site_name: split
+docs_dir: .
 pages:
 - Home: README.md
