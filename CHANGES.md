@@ -15,7 +15,7 @@
 [luacov-coveralls]: https://github.com/moteus/luacov-coveralls
 [coveralls]: https://coveralls.io
 
-Would you reather view the [documentation][d]?
+Would you rather view the [documentation][d]?
 
 [d]: /README.md
 ---

@@ -12,7 +12,7 @@ do
 	do
 		lua -lluacov "$test"
 		[ $? -eq 0 ] || exit $?
-		luacov-coveralls -t "$COVERALLS_REPO_TOKEN"
 	done
 done
+luacov-coveralls -t "$COVERALLS_REPO_TOKEN"
 
