@@ -2,3 +2,5 @@ site_name: split
 docs_dir: .
 pages:
 - Home: README.md
+- Changes: CHANGES.md
+- License: LICENSE.md
