@@ -14,5 +14,6 @@ do
 		[ $? -eq 0 ] || exit $?
 	done
 done
+luacov
 luacov-coveralls -t "$COVERALLS_REPO_TOKEN"
 
