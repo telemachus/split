@@ -16,4 +16,5 @@ do
 done
 luacov
 luacov-coveralls -t "$COVERALLS_REPO_TOKEN"
+bash <(curl -s https://codecov.io/bash)
 
