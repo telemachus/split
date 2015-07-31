@@ -3,7 +3,7 @@
 for lua in lua5.1 lua5.2 lua5.3 luajit
 do
 	rm -rf $HOME/.lua ;
-	LUA="$lua" source "$CI/setenv_lua.sh" ;
+	LUA="$lua" source "$SETUP/setenv_lua.sh" ;
 	lua -v ;
 	luarocks install tapered
 	luarocks install luacov
