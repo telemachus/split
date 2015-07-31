@@ -10,7 +10,7 @@ set -eufo pipefail
 
 LUAJIT_BASE="LuaJIT-2.0.4"
 
-source $CI/platform.sh
+source $LUA_ENV/platform.sh
 
 LUA_HOME_DIR=$CI_BUILD_DIR/install/lua
 
