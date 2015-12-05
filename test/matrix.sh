@@ -15,5 +15,7 @@ do
 	done
 done
 luacov
+cp -v luacov.report.out ../
+cd ..
 bash <(curl -s https://codecov.io/bash)
 
