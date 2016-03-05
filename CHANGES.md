@@ -22,6 +22,13 @@
 
 [codecov]: https://codecov.io
 
+## *2.0.0-1* (March 5, 2016)
+
++ Fix a bug when the iterator is used to explode a string. Thanks to Alexey
+  Melnichuk for reporting the problem.
++ Change the information variables to functions. These serve the same purpose,
+  but don't use variable names that Lua explicitly warns users about.
+
 Would you rather view the [documentation][d]?
 
 [d]: /README.md

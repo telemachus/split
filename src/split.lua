@@ -109,11 +109,27 @@ local spliterator = function (str, delimiter)
   return iter
 end
 
+local version = function ()
+  return '2.0.0-1'
+end
+
+local author = function ()
+  return 'Peter Aronoff'
+end
+
+local url = function ()
+  return 'https://bitbucket.org/telemachus/split'
+end
+
+local license = function ()
+  return 'BSD 3-Clause'
+end
+
 return {
   split = split,
   spliterator = spliterator,
-  _VERSION = "1.0-0-1",
-  _AUTHOR = "Peter Aronoff",
-  _URL = "https://bitbucket.org/telemachus/split",
-  _LICENSE = 'BSD 3-Clause',
+  version = version,
+  author = author,
+  url = url,
+  license = license,
 }
