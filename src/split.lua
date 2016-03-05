@@ -10,6 +10,7 @@
 local find = string.find
 local fmt = string.format
 local cut = string.sub
+local gmatch = string.gmatch
 local error = error
 
 --- Helper functions
@@ -78,7 +79,7 @@ end
 --- spliterator(str, delimiter)
 local spliterator = function (str, delimiter)
   delimiter = delimiter or '%s+'
-  if delimiter == '' then delimiter = '.' end
+  if delimiter == '' then return gmatch(str, '.') end
   if find('', delimiter, 1) then
     local msg = fmt('The delimiter (%s) would match the empty string.',
                     delimiter)
