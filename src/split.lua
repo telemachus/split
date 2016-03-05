@@ -2,7 +2,7 @@
 --
 -- Peter Aronoff
 -- BSD 3-Clause License
--- 2012-2015
+-- 2012-2016
 --
 -- There are many split functions for Lua. This is mine. Though, actually,
 -- I took lots of ideas and probably some code from the implementations on
@@ -54,7 +54,7 @@ local split = function (str, delimiter)
   s, e = find(str, delimiter, position)
 
   while s do
-    t[#t+1] = cut(str, position, s-1)
+    t[#t + 1] = cut(str, position, s-1)
     position = e + 1
     s, e = find(str, delimiter, position)
   end
@@ -70,7 +70,7 @@ local split = function (str, delimiter)
   -- last found end position is identical to the end of the whole string,
   -- then add a trailing empty field.
   if position > #str then
-    t[#t+1] = ''
+    t[#t + 1] = ''
   end
 
   return t
@@ -88,7 +88,7 @@ local spliterator = function (str, delimiter)
 
   local s, e, subsection
   local position = 1
-  local function iter()
+  local iter = function ()
     if str == '' then return nil end
 
     s, e = find(str, delimiter, position)
