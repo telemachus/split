@@ -76,8 +76,8 @@ local split = function (str, delimiter)
   return t
 end
 
---- spliterator(str, delimiter)
-local spliterator = function (str, delimiter)
+--- each(str, delimiter)
+local each = function (str, delimiter)
   delimiter = delimiter or '%s+'
   if delimiter == '' then return gmatch(str, '.') end
   if find('', delimiter, 1) then
@@ -109,8 +109,25 @@ local spliterator = function (str, delimiter)
   return iter
 end
 
+local first_and_rest = function(str, delimiter)
+  delimiter = delimiter or '%s+'
+  if delimiter == '' then return cut(str, 1, 1), cut(str, 2) end
+  if find('', delimiter, 1) then
+    local msg = fmt('The delimiter (%s) would match the empty string.',
+                    delimiter)
+    error(msg)
+  end
+
+  local s, e = find(str, delimiter)
+  if s then
+    return cut(str, 1, s - 1), cut(str, e + 1)
+  else
+    return str
+  end
+end
+
 local version = function ()
-  return '2.0.0-1'
+  return '3.0.0-1'
 end
 
 local author = function ()
@@ -127,7 +144,9 @@ end
 
 return {
   split = split,
-  spliterator = spliterator,
+  each = each,
+  spliterator = each,
+  first_and_rest = first_and_rest,
   version = version,
   author = author,
   url = url,

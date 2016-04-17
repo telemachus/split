@@ -29,6 +29,17 @@
 + Change the information variables to functions. These serve the same purpose,
   but don't use variable names that Lua explicitly warns users about.
 
+## *3.0.0-1* (April 24, 2016)
+
++ Clean up tests.
++ Change the name of `spliterator` to `each`. The new name is less silly and
+  hopefully clearer. **NB**: For the moment, `spliterator` is still provided as
+  an alias to `each`. However, in the next major version release (i.e.,
+  4.0.0-1), `spliterator` will be removed. Please start switching any code that
+  uses `spliterator` to `each`.
++ Add `first_and_rest`, a string equivalent to a function that splits a list
+  into its head and tail.
+
 Would you rather view the [documentation][d]?
 
 [d]: /README.md

@@ -44,6 +44,20 @@ but don&rsquo;t use variable names that Lua explicitly warns users about.</li>
 </ul>
 
 
+<h2><em>3.0.0-1</em> (April 24, 2016)</h2>
+
+<ul>
+<li>Clean up tests.</li>
+<li>Change the name of <code>spliterator</code> to <code>each</code>. The new name is less silly and
+hopefully clearer. <strong>NB</strong>: For the moment, <code>spliterator</code> is still provided as
+an alias to <code>each</code>. However, in the next major version release (i.e.,
+4.0.0-1), <code>spliterator</code> will be removed. Please start switching any code that
+uses <code>spliterator</code> to <code>each</code>.</li>
+<li>Add <code>first_and_rest</code>, a string equivalent to a function that splits a list
+into its head and tail.</li>
+</ul>
+
+
 <p>Would you rather view the <a href="index.html">documentation</a>?</p>
 
 <hr />
