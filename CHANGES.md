@@ -40,12 +40,17 @@
 + Add `first_and_rest`, a string equivalent to a function that splits a list
   into its head and tail.
 
+## *3.0.1-1* (May 2, 2016)
+
++ Fix a few typos and copyright dates
++ Fix the string returned by `version()`.
+
 Would you rather view the [documentation][d]?
 
 [d]: /README.md
 ---
 
-(c) 2012-2015 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][l] for
+(c) 2012-2016 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][l] for
 details.
 
 [l]: /LICENSE.md
