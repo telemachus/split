@@ -3,7 +3,7 @@ local t = require 'tapered'
 package.path = '../src/?.lua;' .. package.path
 local split = require 'split'
 
-t.is(split.version(), '3.0.1', "version() returns '3.0.1'.")
+t.is(split.version(), '3.1.0', "version() returns '3.1.0'.")
 t.is(split.author(), 'Peter Aronoff', "author() returns 'Peter Aronoff'.")
 t.is(split.url(), 'https://bitbucket.org/telemachus/split',
      "url() returns 'https://bitbucket.org/telemachus/split'.")

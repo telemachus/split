@@ -45,6 +45,10 @@
 + Fix a few typos and copyright dates
 + Fix the string returned by `version()`.
 
+## *3.1.0-1* (July 21, 2016)
+
++ Updated to test against Lua 5.3.3
+
 Would you rather view the [documentation][d]?
 
 [d]: /README.md
