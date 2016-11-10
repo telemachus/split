@@ -2,7 +2,7 @@
 
 ## Synopsis
 
-A string `split` function and iterator for Lua sicne Lua's standard sting
+A string `split` function and iterator for Lua since Lua's standard sting
 library doesn't provide such a function. When working with text `split` is very
 useful, and [many people have written a version for Lua][wiki].
 
