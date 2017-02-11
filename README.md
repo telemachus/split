@@ -132,7 +132,7 @@ should be self-explanatory.
 
 + `author() -- Peter Aronoff`
 
-+ `url() -- https://bitbucket.org/telemachus/split`
++ `url() -- https://github.com/telemachus/split`
 
 + `license() -- BSD 3-Clause`
 
