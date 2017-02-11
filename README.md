@@ -128,7 +128,7 @@ useful, and [many people have written a version for Lua][wiki].
 The module provides four informational functions that return strings. They
 should be self-explanatory.
 
-+ `version() -- 3.1.0`
++ `version() -- 3.2.0`
 
 + `author() -- Peter Aronoff`
 

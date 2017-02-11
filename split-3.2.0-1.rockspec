@@ -3,7 +3,7 @@ version = '3.2.0-1'
 source = {
   url = 'git://github.com/telemachus/split.git',
   branch = 'master',
-  tag = '3.2.0'
+  tag = 'v3.2.0-1'
 }
 description = {
     summary = 'String split function and iterator for Lua',
