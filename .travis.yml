@@ -1,0 +1,40 @@
+language: c
+
+sudo: false
+
+env:
+  global:
+    - LUAROCKS=2.3.0
+  matrix:
+    - LUA=lua5.1
+    - LUA=lua5.2
+    - LUA=lua5.3
+    - LUA=luajit     # latest stable version (2.0.4)
+    - LUA=luajit2.0  # current head of 2.0 branch
+    - LUA=luajit2.1  # current head of 2.1 branch
+
+branches:
+  only:
+    - travis
+    - master
+
+before_install:
+  - source .travis/setenv_lua.sh
+  - lua -v
+  - luarocks install tapered
+  - luarocks install luacov
+
+script:
+  - cd test
+  - bash runner.sh
+
+after_success:
+  - luacov
+  - cp -v luacov.report.out ../
+  - cd ..
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

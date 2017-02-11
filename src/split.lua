@@ -127,7 +127,7 @@ local first_and_rest = function(str, delimiter)
 end
 
 local version = function ()
-  return '3.1.0'
+  return '3.2.0'
 end
 
 local author = function ()
@@ -135,7 +135,7 @@ local author = function ()
 end
 
 local url = function ()
-  return 'https://bitbucket.org/telemachus/split'
+  return 'https://github.com/telemachus/split'
 end
 
 local license = function ()

@@ -1,4 +1,4 @@
-# split [![Build Status](https://drone.io/bitbucket.org/telemachus/split/status.png)](https://drone.io/bitbucket.org/telemachus/split/latest) [![codecov.io](http://codecov.io/bitbucket/telemachus/split/coverage.svg?branch=master)](http://codecov.io/bitbucket/telemachus/split?branch=master)
+# split [![Build Status](https://travis-ci.org/telemachus/split.svg?branch=master)](https://travis-ci.org/telemachus/split) [![Coverage](https://codecov.io/gh/telemachus/split/branch/master/graph/badge.svg)](https://codecov.io/gh/telemachus/split)
 
 ## Synopsis
 

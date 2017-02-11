@@ -49,6 +49,12 @@
 
 + Updated to test against Lua 5.3.3
 
+## *3.2.0-1* (February 11, 2017)
+
++ Updated to test against Lua 5.3.4
++ The repo is now housed on [Github](https://github.com/telemachus/split)
++ CI is now provided by [Travis.ci](https://travis-ci.org/telemachus/split)
+
 Would you rather view the [documentation][d]?
 
 [d]: /README.md
