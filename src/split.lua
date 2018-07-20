@@ -2,7 +2,7 @@
 --
 -- Peter Aronoff
 -- BSD 3-Clause License
--- 2012-2016
+-- 2012-2018
 --
 -- There are many split functions for Lua. This is mine. Though, actually,
 -- I took lots of ideas and probably some code from the implementations on
@@ -127,7 +127,7 @@ local first_and_rest = function(str, delimiter)
 end
 
 local version = function ()
-  return '3.2.0'
+  return '3.2.1'
 end
 
 local author = function ()

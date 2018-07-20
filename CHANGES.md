@@ -55,12 +55,18 @@
 + The repo is now housed on [Github](https://github.com/telemachus/split)
 + CI is now provided by [Travis.ci](https://travis-ci.org/telemachus/split)
 
+## *3.2.1-1* (July 19, 2018)
+
++ Updated to test against LuaJit 2.0.5
++ Updated to test against Lua 5.3.5
++ Updated to recognize that it’s 2018
+
 Would you rather view the [documentation][d]?
 
 [d]: /README.md
 ---
 
-(c) 2012-2017 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][l] for
+(c) 2012-2018 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][l] for
 details.
 
 [l]: /LICENSE.md
