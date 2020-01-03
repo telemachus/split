@@ -66,7 +66,7 @@ Would you rather view the [documentation][d]?
 [d]: /README.md
 ---
 
-(c) 2012-2019 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][l] for
+(c) 2012-2020 Peter Aronoff. BSD 3-Clause license; see [LICENSE.md][l] for
 details.
 
 [l]: /LICENSE.md
