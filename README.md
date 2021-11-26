@@ -1,4 +1,4 @@
-# split [![Build Status](https://travis-ci.org/telemachus/split.svg?branch=master)](https://travis-ci.org/telemachus/split) [![Coverage](https://codecov.io/gh/telemachus/split/branch/master/graph/badge.svg)](https://codecov.io/gh/telemachus/split)
+# split
 
 ## Synopsis
 
