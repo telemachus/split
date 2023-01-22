@@ -1,0 +1,26 @@
+name: test
+
+on: [push]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        luaVersion: ["5.1", "5.2", "5.3", "5.4", "luajit"]
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+
+    name: split test (using lua ${{ matrix.luaVersion }} on ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@master
+    - uses: leafo/gh-actions-lua@v9
+    - uses: leafo/gh-actions-luarocks@v4
+      with:
+        luaVersion: ${{ matrix.luaVersion }}
+    - name: test
+      run: |
+        cd test
+        bash runner.sh

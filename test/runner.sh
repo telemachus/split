@@ -1,5 +1,5 @@
 for test in test-*.lua
 do
-	lua -lluacov "$test"
+	lua "$test"
 	[ $? -eq 0 ] || exit $?
 done
