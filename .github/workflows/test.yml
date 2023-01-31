@@ -11,12 +11,13 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
+          - windows-latest
     runs-on: ${{ matrix.os }}
 
     name: split test (using lua ${{ matrix.luaVersion }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@master
-    - uses: leafo/gh-actions-lua@v9
+    - uses: leafo/gh-actions-lua@master
       with:
         luaVersion: ${{ matrix.luaVersion }}
     - name: test
