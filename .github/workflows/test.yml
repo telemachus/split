@@ -17,9 +17,11 @@ jobs:
     name: split test (using lua ${{ matrix.luaVersion }} on ${{ matrix.os }}
     steps:
     - uses: actions/checkout@master
+    - uses: ilammy/msvc-dev-cmd@v1
     - uses: leafo/gh-actions-lua@master
       with:
         luaVersion: ${{ matrix.luaVersion }}
+        buildCache: false
     - name: test
       run: |
         cd test
